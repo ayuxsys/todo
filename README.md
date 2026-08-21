@@ -1,10 +1,19 @@
 # Todo
 
-A simple task manager with YAML configuration, database-backed tasks, and Waybar integration.
+A simple task manager with YAML configuration, sqlite database tasks, and Waybar integration.
 
 ## Description
 
 Tasks are stored in a sqlite database with their unix timestamps, and `todo -t` outputs the current task as JSON for a Waybar custom module.
+
+## Installation
+
+```console
+git clone https://github.com/ayuxsys/todo.git --depth=1
+cd todo
+go build -o .
+mv ./todo ~/go/bin
+```
 
 ## Setup
 
@@ -35,7 +44,7 @@ Load the configuration into the database:
 todo load -rc config.yaml
 ```
 
-## Waybar Integration
+## Configuring Waybar
 
 Add the following module to your Waybar configuration:
 
@@ -62,7 +71,7 @@ To automatically load your configuration when Hyprland starts, add the following
 
 ```lua
 -- Loads $HOME/.todo/config.yaml
-hl.exec_cmd("todo load -r")
+hl.exec_cmd("\"$HOME\"/go/bin/todo  load -r")
 ```
 
 This ensures your Todo configuration is loaded automatically when starting Hyprland.
